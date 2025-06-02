@@ -4,7 +4,6 @@ from authors.models import Author
 from authors.pagination import AuthorsPagination
 from authors.serializers import AuthorSerializers
 from rest_framework.permissions import IsAdminUser, AllowAny
-from users.permissions import IsOwner
 
 
 class AuthorCreateApiView(generics.CreateAPIView):
@@ -28,7 +27,7 @@ class AuthorRetrieveApiView(generics.RetrieveAPIView):
 class AuthorUpdateApiView(generics.UpdateAPIView):
     queryset = Author.objects.all()
     serializer_class = AuthorSerializers
-    permission_classes = [IsAdminUser, IsOwner]
+    permission_classes = [IsAdminUser,]
 
 
 class AuthorDestroyApiView(generics.DestroyAPIView):
