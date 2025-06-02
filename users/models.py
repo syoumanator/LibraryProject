@@ -8,7 +8,7 @@ class User(AbstractUser):
     email = models.EmailField(unique=True, verbose_name="Email", help_text="Введите адрес электронной почты")
     first_name = models.CharField(max_length=20, verbose_name="First name", help_text="Введите ваше имя ")
     last_name = models.CharField(max_length=20, verbose_name="Last name", help_text="Введите вашу фамилию")
-    phone_number = models.CharField(max_length=20, verbose_name="Phone", help_text="Введите номер телефона", null=True, blank=True)
+    phone_number = models.CharField(max_length=20, verbose_name="Phone", help_text="Введите номер телефона")
     city = models.CharField(max_length=30, verbose_name="City", help_text="Укажите город", blank=True, null=True)
     avatar = models.ImageField(upload_to="users/avatars", verbose_name="Avatar", null=True, blank=True)
     date_joined = models.DateTimeField(verbose_name="Date joined", default=timezone.now)
