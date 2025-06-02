@@ -1,34 +1,35 @@
 from rest_framework import generics
 
 from authors.models import Author
+from authors.pagination import AuthorsPagination
 from authors.serializers import AuthorSerializers
+from rest_framework.permissions import IsAdminUser, AllowAny
 
 
 class AuthorCreateApiView(generics.CreateAPIView):
     serializer_class = AuthorSerializers
-    pass
-
-
-class AuthorRetrieveApiView(generics.RetrieveAPIView):
-    serializer_class = AuthorSerializers
-    queryset = Author.objects.all()
-
-    pass
+    permission_classes = [IsAdminUser,]
 
 
 class AuthorListApiView(generics.ListAPIView):
     serializer_class = AuthorSerializers
     queryset = Author.objects.all()
+    pagination_class = AuthorsPagination
+    permission_classes = [AllowAny,]
 
-    pass
+
+class AuthorRetrieveApiView(generics.RetrieveAPIView):
+    queryset = Author.objects.all()
+    serializer_class = AuthorSerializers
+    permission_classes = [AllowAny]
 
 
 class AuthorUpdateApiView(generics.UpdateAPIView):
     queryset = Author.objects.all()
     serializer_class = AuthorSerializers
-    pass
+    permission_classes = [IsAdminUser,]
 
 
 class AuthorDestroyApiView(generics.DestroyAPIView):
     queryset = Author.objects.all()
-    pass
+    permission_classes = [IsAdminUser,]
