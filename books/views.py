@@ -1,3 +1,4 @@
+from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import generics
 
 from books.models import Book
@@ -15,6 +16,8 @@ class BookCreateApiView(generics.CreateAPIView):
 class BookListApiView(generics.ListAPIView):
     serializer_class = BookSerializer
     queryset = Book.objects.all()
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ("title",  "genre", "author__last_name",)
     pagination_class = LibraryPagination
     permission_classes = [AllowAny,]
 
