@@ -1,11 +1,13 @@
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import generics
 
-from books.models import Book
+from books.models import Book, TakeBook
 from books.pagination import LibraryPagination
-from books.serializers import BookSerializer
+from books.serializers import BookSerializer, TakeBookSerializers
 from rest_framework.permissions import IsAdminUser, AllowAny
-from users.permissions import IsModer
+
+from books.services import take_book, return_book
+from users.permissions import IsModer, IsOwner
 
 
 class BookCreateApiView(generics.CreateAPIView):
@@ -36,4 +38,50 @@ class BookUpdateApiView(generics.UpdateAPIView):
 
 class BookDestroyApiView(generics.DestroyAPIView):
     queryset = Book.objects.all()
+    permission_classes = [IsModer | IsAdminUser,]
+
+
+class TakeBookCreateApiView(generics.CreateAPIView):
+    queryset = TakeBook.objects.all()
+    serializer_class = TakeBookSerializers
+    permission_classes = [IsModer | IsAdminUser,]
+
+    def perform_create(self, serializer):
+        data = serializer.save(user=self.request.user)
+        take_book(data.book)
+        data.save()
+
+
+class TakeBookListApiView(generics.ListAPIView):
+    serializer_class = TakeBookSerializers
+    queryset = TakeBook.objects.all()
+    pagination_class = LibraryPagination
+    permission_classes = [IsModer | IsAdminUser,]
+
+
+class TakeBookRetrieveApiView(generics.RetrieveAPIView):
+    queryset = TakeBook.objects.all()
+    serializer_class = TakeBookSerializers
+
+    def get_queryset(self):
+        if IsAdminUser().has_permission(self.request, self) or IsModer().has_permission(self.request, self):
+            return TakeBook.objects.all()
+        else:
+            return TakeBook.objects.filter(user=self.request.user)
+
+
+class TakeBookUpdateApiView(generics.UpdateAPIView):
+    queryset = TakeBook.objects.all()
+    serializer_class = TakeBookSerializers
+    permission_classes = [IsModer | IsAdminUser,]
+
+    def perform_update(self, serializer):
+        data = serializer.save()
+        book = data.book
+        return_book(data, book)
+        data.save()
+
+
+class TakeBookDestroyApiView(generics.DestroyAPIView):
+    queryset = TakeBook.objects.all()
     permission_classes = [IsModer | IsAdminUser,]
