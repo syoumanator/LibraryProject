@@ -8,8 +8,12 @@ from users.models import User
 class AuthorForAdminAPITestCase(APITestCase):
 
     def setUp(self):
-        self.superuser = User.objects.create_superuser(username="SU", email="su@example.com", password="testpass123")
-        self.user = User.objects.create(username="User", email="user@example.com", password="testpass123")
+        self.superuser = User.objects.create_superuser(
+            username="SU", email="su@example.com", password="testpass123"
+        )
+        self.user = User.objects.create(
+            username="User", email="user@example.com", password="testpass123"
+        )
 
         self.client.force_authenticate(user=self.user)
         self.authors = Author.objects.create(
@@ -37,7 +41,7 @@ class AuthorForAdminAPITestCase(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
         """Просмотр авторов"""
-        response = self.client.get(f"/authors/")
+        response = self.client.get("/authors/")
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
         """Просмотр автора"""
@@ -45,7 +49,9 @@ class AuthorForAdminAPITestCase(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
         """Обновление автора"""
-        response = self.client.put(f"/authors/{self.authors.last_name}/update/", data=update_data)
+        response = self.client.put(
+            f"/authors/{self.authors.last_name}/update/", data=update_data
+        )
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     def test__delete_superuser(self):
@@ -73,7 +79,7 @@ class AuthorForAdminAPITestCase(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
 
         """Просмотр авторов"""
-        response = self.client.get(f"/authors/")
+        response = self.client.get("/authors/")
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
         """Просмотр автора"""
@@ -81,7 +87,9 @@ class AuthorForAdminAPITestCase(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
         """Обновление автора"""
-        response = self.client.put(f"/authors/{self.authors.last_name}/update/", data=update_data)
+        response = self.client.put(
+            f"/authors/{self.authors.last_name}/update/", data=update_data
+        )
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
 
     def test_delete_user(self):

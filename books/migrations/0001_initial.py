@@ -9,29 +9,120 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('authors', '0001_initial'),
+        ("authors", "0001_initial"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Book',
+            name="Book",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('title', models.CharField(help_text='Укажите название книги', max_length=100, verbose_name='Book Title')),
-                ('genre', models.CharField(blank=True, help_text='Укажите жанр книги', null=True, verbose_name='Book Genre')),
-                ('description', models.TextField(blank=True, help_text='Напишите описание книги', null=True, verbose_name='Description')),
-                ('pages', models.PositiveSmallIntegerField(blank=True, help_text='Укажите количество страниц', null=True, verbose_name='Количество страниц')),
-                ('publication_date', models.DateField(blank=True, help_text='Укажите дату публикации книги (YYYY-MM-DD)', null=True, verbose_name='Publication Date')),
-                ('translator', models.CharField(blank=True, help_text='Укажите переводчика', max_length=100, null=True, verbose_name='Translator')),
-                ('quantity', models.PositiveSmallIntegerField(verbose_name='Общее количество книг')),
-                ('in_stock_quantity', models.PositiveSmallIntegerField(verbose_name='Доступное количество книг')),
-                ('is_available', models.BooleanField(default=True, help_text='Имеется ли книга для выдачи', verbose_name='Is Available')),
-                ('image', models.ImageField(blank=True, help_text='Загрузите изображение книги', null=True, upload_to='books/image', verbose_name='Image')),
-                ('author', models.ForeignKey(help_text='Укажите автора книги', on_delete=django.db.models.deletion.CASCADE, related_name='authors', to='authors.author', verbose_name='Author')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "title",
+                    models.CharField(
+                        help_text="Укажите название книги",
+                        max_length=100,
+                        verbose_name="Book Title",
+                    ),
+                ),
+                (
+                    "genre",
+                    models.CharField(
+                        blank=True,
+                        help_text="Укажите жанр книги",
+                        null=True,
+                        verbose_name="Book Genre",
+                    ),
+                ),
+                (
+                    "description",
+                    models.TextField(
+                        blank=True,
+                        help_text="Напишите описание книги",
+                        null=True,
+                        verbose_name="Description",
+                    ),
+                ),
+                (
+                    "pages",
+                    models.PositiveSmallIntegerField(
+                        blank=True,
+                        help_text="Укажите количество страниц",
+                        null=True,
+                        verbose_name="Количество страниц",
+                    ),
+                ),
+                (
+                    "publication_date",
+                    models.DateField(
+                        blank=True,
+                        help_text="Укажите дату публикации книги (YYYY-MM-DD)",
+                        null=True,
+                        verbose_name="Publication Date",
+                    ),
+                ),
+                (
+                    "translator",
+                    models.CharField(
+                        blank=True,
+                        help_text="Укажите переводчика",
+                        max_length=100,
+                        null=True,
+                        verbose_name="Translator",
+                    ),
+                ),
+                (
+                    "quantity",
+                    models.PositiveSmallIntegerField(
+                        verbose_name="Общее количество книг"
+                    ),
+                ),
+                (
+                    "in_stock_quantity",
+                    models.PositiveSmallIntegerField(
+                        verbose_name="Доступное количество книг"
+                    ),
+                ),
+                (
+                    "is_available",
+                    models.BooleanField(
+                        default=True,
+                        help_text="Имеется ли книга для выдачи",
+                        verbose_name="Is Available",
+                    ),
+                ),
+                (
+                    "image",
+                    models.ImageField(
+                        blank=True,
+                        help_text="Загрузите изображение книги",
+                        null=True,
+                        upload_to="books/image",
+                        verbose_name="Image",
+                    ),
+                ),
+                (
+                    "author",
+                    models.ForeignKey(
+                        help_text="Укажите автора книги",
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="authors",
+                        to="authors.author",
+                        verbose_name="Author",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Книга',
-                'verbose_name_plural': 'Книги',
+                "verbose_name": "Книга",
+                "verbose_name_plural": "Книги",
             },
         ),
     ]

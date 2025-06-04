@@ -8,26 +8,70 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('books', '0002_alter_book_options'),
+        ("books", "0002_alter_book_options"),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='TakeBook',
+            name="TakeBook",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('take_date', models.DateField(auto_now_add=True, verbose_name='Дата выдачи книги')),
-                ('return_date', models.DateField(blank=True, null=True, verbose_name='Дата возврата книги')),
-                ('is_returned', models.BooleanField(default=False, verbose_name='Возврат книги')),
-                ('deadline', models.DateField(help_text='Укажите, когда книга должна быть возвращена (YYYY-MM-DD)', verbose_name='Когда книга должна быть возвращена')),
-                ('book', models.ForeignKey(help_text='Укажите отданную книгу', on_delete=django.db.models.deletion.CASCADE, related_name='book', to='books.book', verbose_name='Book')),
-                ('user', models.ForeignKey(help_text='Читатель, взявший книгу', on_delete=django.db.models.deletion.DO_NOTHING, to=settings.AUTH_USER_MODEL, verbose_name='Читатель')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "take_date",
+                    models.DateField(
+                        auto_now_add=True, verbose_name="Дата выдачи книги"
+                    ),
+                ),
+                (
+                    "return_date",
+                    models.DateField(
+                        blank=True, null=True, verbose_name="Дата возврата книги"
+                    ),
+                ),
+                (
+                    "is_returned",
+                    models.BooleanField(default=False, verbose_name="Возврат книги"),
+                ),
+                (
+                    "deadline",
+                    models.DateField(
+                        help_text="Укажите, когда книга должна быть возвращена (YYYY-MM-DD)",
+                        verbose_name="Когда книга должна быть возвращена",
+                    ),
+                ),
+                (
+                    "book",
+                    models.ForeignKey(
+                        help_text="Укажите отданную книгу",
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="book",
+                        to="books.book",
+                        verbose_name="Book",
+                    ),
+                ),
+                (
+                    "user",
+                    models.ForeignKey(
+                        help_text="Читатель, взявший книгу",
+                        on_delete=django.db.models.deletion.DO_NOTHING,
+                        to=settings.AUTH_USER_MODEL,
+                        verbose_name="Читатель",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Аренда книги',
-                'verbose_name_plural': 'Аренды книг',
-                'ordering': ['deadline'],
+                "verbose_name": "Аренда книги",
+                "verbose_name_plural": "Аренды книг",
+                "ordering": ["deadline"],
             },
         ),
     ]

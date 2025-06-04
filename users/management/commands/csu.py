@@ -1,10 +1,10 @@
 import os
 
 from django.core.management import BaseCommand
+from dotenv import load_dotenv
 
 from users.models import User
 
-from dotenv import load_dotenv
 load_dotenv()
 
 
@@ -24,4 +24,9 @@ class Command(BaseCommand):
         user.is_superuser = True
         user.set_password(os.getenv("SU_password"))
         user.save()
-        self.stdout.write(self.style.SUCCESS(f"Admin user created: {user.username}, {user.email}, {user.first_name}, {user.last_name}, {user.phone_number}"))
+        self.stdout.write(
+            self.style.SUCCESS(
+                f"Admin user created: {user.username}, {user.email}, "
+                f"{user.first_name}, {user.last_name}, {user.phone_number}"
+            )
+        )

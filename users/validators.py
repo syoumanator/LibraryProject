@@ -1,5 +1,5 @@
-from rest_framework.exceptions import ValidationError
 from django.core.validators import RegexValidator
+from rest_framework.exceptions import ValidationError
 
 
 class PhoneNumberValidator:
@@ -9,7 +9,7 @@ class PhoneNumberValidator:
         self.field1 = field1
         self.international_regex = RegexValidator(
             regex=r"^\+?7?\d{10}$",
-            message="Формат номера телефона: '89991111111' или '+79991111111'"
+            message="Формат номера телефона: '89991111111' или '+79991111111'",
         )
 
     def __call__(self, instance):

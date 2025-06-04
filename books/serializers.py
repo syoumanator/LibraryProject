@@ -6,13 +6,12 @@ from books.models import Book, TakeBook
 
 class BookSerializer(serializers.ModelSerializer):
     author = serializers.SlugRelatedField(
-        queryset=Author.objects.all(),
-        slug_field='last_name'
+        queryset=Author.objects.all(), slug_field="last_name"
     )
 
     class Meta:
         model = Book
-        fields = '__all__'
+        fields = "__all__"
 
 
 class TakeBookSerializers(serializers.ModelSerializer):
