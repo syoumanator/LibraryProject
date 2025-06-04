@@ -8,7 +8,7 @@ from users.permissions import IsModer
 
 
 class BookCreateApiView(generics.CreateAPIView):
-    serializer_class = LibraryPagination
+    serializer_class = BookSerializer
     permission_classes = [IsModer | IsAdminUser,]
 
 
@@ -21,7 +21,7 @@ class BookListApiView(generics.ListAPIView):
 
 class BookRetrieveApiView(generics.RetrieveAPIView):
     queryset = Book.objects.all()
-    serializer_class = LibraryPagination
+    serializer_class = BookSerializer
     permission_classes = [AllowAny]
 
 

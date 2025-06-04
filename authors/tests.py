@@ -11,9 +11,9 @@ class AuthorForAdminAPITestCase(APITestCase):
         self.user = User.objects.create_superuser(username="Test", email="test@example.com", password="testpass123")
         self.client.force_authenticate(user=self.user)
         self.authors = Author.objects.create(
-            first_name="place",
-            last_name="00:00",
-            country="act",
+            first_name="Лев",
+            last_name="Толстой",
+            country="Россия",
         )
 
     def test_author_create(self):
