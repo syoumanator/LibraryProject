@@ -38,5 +38,5 @@ class TakeBook(models.Model):
 
     class Meta:
         verbose_name = "Аренда книги"
-        verbose_name_plural = "Аренды книг"
-        ordering = ["deadline"]
+        verbose_name_plural = "Аренда книг"
+        ordering = ["pk"]

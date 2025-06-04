@@ -58,16 +58,19 @@ class TakeBookListApiView(generics.ListAPIView):
     pagination_class = LibraryPagination
     permission_classes = [IsModer | IsAdminUser,]
 
+    def get_queryset(self):
+        if IsAdminUser().has_permission(self.request, self) or IsModer().has_permission(self.request, self):
+            print(TakeBook.objects.all())
+            return TakeBook.objects.all()
+        else:
+            print(TakeBook.objects.all())
+            return TakeBook.objects.filter(user=self.request.user)
+
 
 class TakeBookRetrieveApiView(generics.RetrieveAPIView):
     queryset = TakeBook.objects.all()
     serializer_class = TakeBookSerializers
-
-    def get_queryset(self):
-        if IsAdminUser().has_permission(self.request, self) or IsModer().has_permission(self.request, self):
-            return TakeBook.objects.all()
-        else:
-            return TakeBook.objects.filter(user=self.request.user)
+    permission_classes = [IsModer | IsAdminUser,]
 
 
 class TakeBookUpdateApiView(generics.UpdateAPIView):
