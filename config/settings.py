@@ -25,6 +25,7 @@ INSTALLED_APPS = [
     "django_filters",
     "django_celery_beat",
     "drf_yasg",
+    # "corsheaders"
     "users",
     "authors",
     "books",
@@ -33,6 +34,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
+    'corsheaders.middleware.CorsMiddleware',
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
@@ -129,3 +131,6 @@ EMAIL_USE_TLS = False if os.getenv("EMAIL_USE_TLS") else True
 
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 SERVER_EMAIL = EMAIL_HOST_USER
+
+# CORS_ALLOWED_ORIGINS = ['<http://localhost:8000>']
+# CSRF_TRUSTED_ORIGINS = ["http://127.0.0.1:8000"]
