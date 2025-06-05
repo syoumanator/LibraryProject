@@ -7,6 +7,7 @@ from authors.serializers import AuthorSerializers
 
 
 class AuthorCreateApiView(generics.CreateAPIView):
+    """Эндпоинт создания"""
     serializer_class = AuthorSerializers
     permission_classes = [
         IsAdminUser,
@@ -14,6 +15,7 @@ class AuthorCreateApiView(generics.CreateAPIView):
 
 
 class AuthorListApiView(generics.ListAPIView):
+    """Эндпоинт просмотра списка"""
     serializer_class = AuthorSerializers
     queryset = Author.objects.all()
     pagination_class = AuthorsPagination
@@ -23,12 +25,14 @@ class AuthorListApiView(generics.ListAPIView):
 
 
 class AuthorRetrieveApiView(generics.RetrieveAPIView):
+    """Эндпоинт просмотра"""
     queryset = Author.objects.all()
     serializer_class = AuthorSerializers
     permission_classes = [AllowAny]
 
 
 class AuthorUpdateApiView(generics.UpdateAPIView):
+    """Эндпоинт изменения"""
     queryset = Author.objects.all()
     serializer_class = AuthorSerializers
     permission_classes = [
@@ -37,6 +41,7 @@ class AuthorUpdateApiView(generics.UpdateAPIView):
 
 
 class AuthorDestroyApiView(generics.DestroyAPIView):
+    """Эндпоинт удаления"""
     queryset = Author.objects.all()
     permission_classes = [
         IsAdminUser,

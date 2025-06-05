@@ -10,6 +10,7 @@ from users.permissions import IsModer
 
 
 class BookCreateApiView(generics.CreateAPIView):
+    """Эндпоинт создания книги"""
     serializer_class = BookSerializer
     permission_classes = [
         IsModer | IsAdminUser,
@@ -17,6 +18,7 @@ class BookCreateApiView(generics.CreateAPIView):
 
 
 class BookListApiView(generics.ListAPIView):
+    """Эндпоинт просмотра списка книг"""
     serializer_class = BookSerializer
     queryset = Book.objects.all()
     filter_backends = [DjangoFilterBackend]
@@ -32,12 +34,14 @@ class BookListApiView(generics.ListAPIView):
 
 
 class BookRetrieveApiView(generics.RetrieveAPIView):
+    """Эндпоинт просмотра книги"""
     queryset = Book.objects.all()
     serializer_class = BookSerializer
     permission_classes = [AllowAny]
 
 
 class BookUpdateApiView(generics.UpdateAPIView):
+    """Эндпоинт изменения книги"""
     queryset = Book.objects.all()
     serializer_class = BookSerializer
     permission_classes = [
@@ -46,6 +50,7 @@ class BookUpdateApiView(generics.UpdateAPIView):
 
 
 class BookDestroyApiView(generics.DestroyAPIView):
+    """Эндпоинт удаления книги"""
     queryset = Book.objects.all()
     permission_classes = [
         IsModer | IsAdminUser,
@@ -53,6 +58,7 @@ class BookDestroyApiView(generics.DestroyAPIView):
 
 
 class TakeBookCreateApiView(generics.CreateAPIView):
+    """Эндпоинт создания арендованной книги"""
     queryset = TakeBook.objects.all()
     serializer_class = TakeBookSerializers
     permission_classes = [
@@ -66,6 +72,7 @@ class TakeBookCreateApiView(generics.CreateAPIView):
 
 
 class TakeBookListApiView(generics.ListAPIView):
+    """Эндпоинт просмотра списка арендованных книг"""
     serializer_class = TakeBookSerializers
     queryset = TakeBook.objects.all()
     pagination_class = LibraryPagination
@@ -85,6 +92,7 @@ class TakeBookListApiView(generics.ListAPIView):
 
 
 class TakeBookRetrieveApiView(generics.RetrieveAPIView):
+    """Эндпоинт просмотра арендованной книги"""
     queryset = TakeBook.objects.all()
     serializer_class = TakeBookSerializers
     permission_classes = [
@@ -93,6 +101,7 @@ class TakeBookRetrieveApiView(generics.RetrieveAPIView):
 
 
 class TakeBookUpdateApiView(generics.UpdateAPIView):
+    """Эндпоинт изменения арендованной книги"""
     queryset = TakeBook.objects.all()
     serializer_class = TakeBookSerializers
     permission_classes = [
@@ -107,6 +116,7 @@ class TakeBookUpdateApiView(generics.UpdateAPIView):
 
 
 class TakeBookDestroyApiView(generics.DestroyAPIView):
+    """Эндпоинт удаления арендованной книги"""
     queryset = TakeBook.objects.all()
     permission_classes = [
         IsModer | IsAdminUser,
