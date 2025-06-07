@@ -1,0 +1,48 @@
+[
+{
+    "model": "books.book",
+    "pk": 4,
+    "fields": {
+        "title": "Война и мир",
+        "author": 2,
+        "genre": null,
+        "description": null,
+        "pages": 1000,
+        "publication_date": null,
+        "translator": null,
+        "quantity": 10,
+        "in_stock_quantity": 5,
+        "is_available": true,
+        "image": ""
+    }
+},
+{
+    "model": "books.book",
+    "pk": 5,
+    "fields": {
+        "title": "Война и мир",
+        "author": 2,
+        "genre": null,
+        "description": null,
+        "pages": null,
+        "publication_date": null,
+        "translator": null,
+        "quantity": 10,
+        "in_stock_quantity": 4,
+        "is_available": true,
+        "image": ""
+    }
+},
+{
+    "model": "books.takebook",
+    "pk": 1,
+    "fields": {
+        "book": 5,
+        "user": 1,
+        "take_date": "2025-06-05",
+        "return_date": null,
+        "is_returned": false,
+        "deadline": "2025-09-23"
+    }
+}
+]

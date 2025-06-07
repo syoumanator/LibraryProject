@@ -1,0 +1,28 @@
+[
+{
+    "model": "authors.author",
+    "pk": 2,
+    "fields": {
+        "first_name": "Лев",
+        "last_name": "Толстой",
+        "date_of_birth": null,
+        "date_of_death": null,
+        "image": "",
+        "country": null,
+        "biography": null
+    }
+},
+{
+    "model": "authors.author",
+    "pk": 4,
+    "fields": {
+        "first_name": "Александр",
+        "last_name": "Пушкин",
+        "date_of_birth": null,
+        "date_of_death": null,
+        "image": "",
+        "country": null,
+        "biography": null
+    }
+}
+]
